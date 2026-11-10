@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interests & Visualization - Personal Website</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Include D3.js v7 CDN -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="interests.html" class="active">Interests & D3</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h3>Exploring Data & Creative Interests</h3>
+        
+        <section class="content-section">
+            <!-- 200+ words of text -->
+            <p>Write your second 200+ word description here. This section can focus on an academic interest, a hobby, or a specific data project you care about. Explain the context behind the visualization below, why this topic matters to you, and how data visualization plays a crucial role in analyzing patterns. Detail the methodology or the inspiration behind your creative pursuits...</p>
+            <p>Continue expanding on your thoughts here to satisfy the length requirement. Discuss the interplay between design principles and data storytelling, or how interactive elements enhance a user's engagement with web-based visualizations...</p>
+
+            <!-- Relevant image -->
+            <img src="secondary-image.jpg" alt="Visualization concept" class="secondary-img">
+
+            <!-- Ordered or unordered list -->
+            <h4>Key Focus Areas</h4>
+            <ul>
+                <li>Interactive Data Visualization & D3.js DOM manipulation</li>
+                <li>Spatial data analysis and mapping patterns</li>
+                <li>Frontend design using custom CSS layouts</li>
+            </ul>
+
+            <!-- D3 Visualization Container -->
+            <h4>Interactive D3.js Bar Chart</h4>
+            <div id="d3-container"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Personal Website</p>
+    </footer>
+
+    <!-- Simple D3 Script -->
+    <script>
+        const data = [30, 86, 168, 281, 303, 365];
+
+        const width = 400, height = 200;
+        const svg = d3.select("#d3-container")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+        svg.selectAll("rect")
+            .data(data)
+            .enter()
+            .append("rect")
+            .attr("x", (d, i) => i * 65)
+            .attr("y", d => height - d / 2)
+            .attr("width", 50)
+            .attr("height", d => d / 2)
+            .attr("fill", "#4f46e5");
+    </script>
+</body>
+</html>
