@@ -1,6 +1,6 @@
 body {
     font-family: 'Arial Black', Gadget, Geneva, Verdana, sans-serif;
-    background-color: #fffafa;
+    background-color: #f0dbdb;
     color: #5e5555;
     margin: 0;
     padding: 0;
@@ -8,7 +8,7 @@ body {
 }
 
 header {
-    background-color: #fffafa;
+    background-color: #f4d8d8;
     padding: 1rem 2rem;
 }
 
@@ -28,7 +28,7 @@ header {
 }
 
 .nav-menu li a.active, .nav-menu li a:hover {
-    color: #38bdf8;
+    color: #6ba1c7;
 }
 
 main {
@@ -41,7 +41,7 @@ main {
 }
 
 h1 {
-    color: #fffafa;
+    color: #5c5a5a;
     font-size: 2.25rem;
     margin-bottom: 1.5rem;
 }
@@ -80,11 +80,11 @@ footer {
     text-align: center;
     padding: 2rem;
     background-color: #fffafa;
-    color: #94a3b8;
+    color: #83888e;
     margin-top: 4rem;
 }
 
 footer a {
-    color: #38bdf8;
+    color: #9fd7ef;
     text-decoration: none;
 }

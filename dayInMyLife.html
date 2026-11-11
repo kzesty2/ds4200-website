@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Time BreakDown - Personal Website</title>
+    <title>Time Breakdown - Personal Website</title>
     <link rel="stylesheet" href="style.css">
     <!-- Include D3.js v7 CDN -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
@@ -19,62 +19,130 @@
     </header>
 
     <main>
-        <h3>Time Breakdown</h3>
+        <h3>My Day To Day</h3>
         
         <section class="content-section">
-            <!-- 200+ words of text -->
-            <p> Text text </p>
-            <p>Continue expanding on your thoughts here to satisfy the length requirement. Discuss the interplay between design principles and data storytelling, or how interactive elements enhance a user's engagement with web-based visualizations...</p>
+            <!-- text -->
 
-            <!-- Relevant image -->
-            <img src="secondary-image.jpg" alt="Visualization concept" class="secondary-img">
+            <p> My schedule can vary greatly depending on more factors than I can count.
+                Things like pending assignments, friends and family, personal well-being, creative pursuits, and more can all cause a drastic change in how my day is structured.
+                Currently, I aim to sleep 8 hours each night, study for at least 4, and keep a consistent flow of recreational activities to avoid burnout.
+            </p>
 
-            <!-- Ordered or unordered list -->
+            <p>Balancing a rigorous undergraduate schedule requires time management, intentional pacing, and structured routines. 
+                College requires me to navigate things like complex coursework, fostering personal relationships, and maintaining upkeep of my space and body. 
+                Thus, structuring my day effectively is essential to maintaining both productivity and mental well-being. 
+                My daily schedule is currently designed to optimize cognitive focus during peak energy hours while ensuring adequate time for rest, physical activity, and creative endeavors. 
+                Viewing my daily routine akin to an empirical dataset helps to better reflect on my habits.</p>
+          
+            <!-- image -->
+            <img src="daily-routine.jpg" alt="Visualization concept" class="secondary-img">
+            
+            <p>The breakdown below outlines how a typical weekday of mine might unfold. Using a list and pie chart visualization, I can easily parse at a glance what my time is going towards.
+               By analyzing these time blocks, I can refine my productivity workflow and dedicate consistent hours toward my long-term goals.</p>
+
+            <!-- list -->
             <h4>Approximate Hourly Breakdown</h4>
             <ul>
-                <li> 12 am - 8 am Sleep </li>
-                <li> 8 am - 9 am Wake Up Preparation </li>
-                <li> 9 am - 11 am Class </li>
-                <li> 11 am - 12 pm Free Time </li>
-                <li> 12 pm - 1 pm Lunch </li>
-                <li> 1 pm - 2 pm Class </li>
-                <li> 2 pm - 4 pm Study </li>
-                <li> 4 pm - 6 pm Free Time </li>
-                <li> 6 pm - 8 pm Study </li>
-                <li> 8 pm - 9 pm Dinner </li>
-                <li> 9 pm - 11 pm Free Time </li>
-                <li> 11 pm - 12 am Sleep Preparation </li>
+                <li>12 am - 8 am: Sleep (8 hours)</li>
+                <li>8 am - 9 am: Wake Up Preparation (1 hour)</li>
+                <li>9 am - 11 am: Class (2 hours)</li>
+                <li>11 am - 12 pm: Free Time (1 hour)</li>
+                <li>12 pm - 1 pm: Lunch (1 hour)</li>
+                <li>1 pm - 2 pm: Class (1 hour)</li>
+                <li>2 pm - 4 pm: Study (2 hours)</li>
+                <li>4 pm - 6 pm: Free Time (2 hours)</li>
+                <li>6 pm - 8 pm: Study (2 hours)</li>
+                <li>8 pm - 9 pm: Dinner (1 hour)</li>
+                <li>9 pm - 11 pm: Free Time (2 hours)</li>
+                <li>11 pm - 12 am: Sleep Preparation (1 hour)</li>
             </ul>
 
             <!-- D3 Visualization Container -->
-            <h4>Interactive D3.js Bar Chart</h4>
+            <h4>Schedule Pie Chart</h4>
             <div id="d3-container"></div>
         </section>
     </main>
 
     <footer>
-        <p>© 2026 Personal Website</p>
+        <p>© Kate Zhangchen 2026</p>
     </footer>
 
-    <!-- Simple D3 Script -->
+    <!-- D3 Pie Chart Script with Fixed Labels -->
     <script>
-        const data = [30, 86, 168, 281, 303, 365];
+        // Grouped time data summing to 24 hours
+        const timeData = [
+            { category: "Sleep", hours: 8 },
+            { category: "Class", hours: 3 },
+            { category: "Study", hours: 4 },
+            { category: "Free Time", hours: 5 },
+            { category: "Prep & Meals", hours: 4 }
+        ];
 
-        const width = 400, height = 200;
+        const width = 450, height = 320;
+        const radius = Math.min(width, height) / 2 - 40;
+
+        // Append SVG to container
         const svg = d3.select("#d3-container")
             .append("svg")
             .attr("width", width)
-            .attr("height", height);
+            .attr("height", height)
+            .append("g")
+            .attr("transform", `translate(${width / 2}, ${height / 2})`);
 
-        svg.selectAll("rect")
-            .data(data)
+        // Color scale
+        const color = d3.scaleOrdinal()
+            .domain(timeData.map(d => d.category))
+            .range(["#0f172a", "#38bdf8", "#4f46e5", "#6366f1", "#94a3b8"]);
+
+        // Compute pie layout
+        const pie = d3.pie()
+            .value(d => d.hours);
+
+        const dataReady = pie(timeData);
+
+        // Arc generator for the slices
+        const arc = d3.arc()
+            .innerRadius(0)
+            .outerRadius(radius);
+
+        // Arc generator for positioning the text labels on the slices
+        const outerArc = d3.arc()
+            .innerRadius(radius * 0.65)
+            .outerRadius(radius * 0.65);
+
+        // Build the pie slices
+        svg.selectAll('allSlices')
+            .data(dataReady)
             .enter()
-            .append("rect")
-            .attr("x", (d, i) => i * 65)
-            .attr("y", d => height - d / 2)
-            .attr("width", 50)
-            .attr("height", d => d / 2)
-            .attr("fill", "#4f46e5");
+            .append('path')
+            .attr('d', arc)
+            .attr('fill', d => color(d.data.category))
+            .attr("stroke", "#ffffff")
+            .style("stroke-width", "2px")
+            .style("transition", "opacity 0.2s")
+            .on("mouseover", function() {
+                d3.select(this).style("opacity", 0.7);
+            })
+            .on("mouseout", function() {
+                d3.select(this).style("opacity", 1.0);
+            });
+
+        // Add text labels with high contrast (white text with a dark outline/shadow)
+        svg.selectAll('allLabels')
+            .data(dataReady)
+            .enter()
+            .append('text')
+            .text(d => `${d.data.category} (${d.data.hours}h)`)
+            .attr('transform', d => {
+                const pos = outerArc.centroid(d);
+                return `translate(${pos})`;
+            })
+            .style('text-anchor', 'middle')
+            .style('font-size', '11px')
+            .style('fill', '#ffffff')
+            .style('font-weight', '700')
+            .style('text-shadow', '0px 1px 3px rgba(0, 0, 0, 0.8)');
     </script>
 </body>
 </html>
