@@ -1,15 +1,16 @@
 body {
-    font-family: 'Arial Black', Gadget, Geneva, Verdana, sans-serif;
-    background-color: #f0dbdb;
-    color: #5e5555;
+    font-family: Arial, Gadget, Geneva, Verdana, sans-serif;
+    background-color: #f7e8e8;
+    color: #3d2e2e;
     margin: 0;
     padding: 0;
     line-height: 1.8;
 }
 
 header {
-    background-color: #f4d8d8;
+    background-color: #e0b1b1;
     padding: 1rem 2rem;
+    border-bottom: 2px solid #cc9999;
 }
 
 .nav-menu {
@@ -21,14 +22,14 @@ header {
 }
 
 .nav-menu li a {
-    color: #cbd5e1;
+    color: #3d2e2e;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     transition: color 0.2s;
 }
 
 .nav-menu li a.active, .nav-menu li a:hover {
-    color: #6ba1c7;
+    color: #9e4747;
 }
 
 main {
@@ -37,18 +38,21 @@ main {
     background: #ffffff;
     padding: 2.5rem;
     border-radius: 25px 40px;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    box-shadow: 0 4px 10px -1px rgb(158 71 71 / 0.15);
+    border: 1px solid #f0d4d4;
 }
 
 h1 {
-    color: #5c5a5a;
+    font-family: 'Arial Black', Gadget, Geneva, sans-serif;
+    color: #2b1f1f;
     font-size: 2.25rem;
     margin-bottom: 1.5rem;
 }
 
 h3 {
-    color: #334155;
-    border-bottom: 2px solid #e2e8f0;
+    font-family: 'Arial Black', Gadget, Geneva, sans-serif;
+    color: #2b1f1f;
+    border-bottom: 2px solid #f0d4d4;
     padding-bottom: 0.5rem;
 }
 
@@ -65,13 +69,15 @@ h3 {
     border-radius: 8px;
     object-fit: cover;
     align-self: center;
+    border: 2px solid #f0d4d4;
 }
 
 #d3-container {
     display: flex;
     justify-content: center;
     margin-top: 1rem;
-    background: #f1f5f9;
+    background: #fcf6f6;
+    border: 1px solid #f0d4d4;
     padding: 1rem;
     border-radius: 8px;
 }
@@ -79,12 +85,18 @@ h3 {
 footer {
     text-align: center;
     padding: 2rem;
-    background-color: #fffafa;
-    color: #83888e;
+    background-color: #e0b1b1;
+    color: #3d2e2e;
     margin-top: 4rem;
+    border-top: 2px solid #cc9999;
 }
 
 footer a {
-    color: #9fd7ef;
+    color: #9e4747;
+    font-weight: 700;
     text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
 }
